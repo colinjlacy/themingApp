@@ -1,0 +1,17 @@
+.blue-theme {
+  h1, h2, h3, h4, h5, h6,
+  .toolbar-title {
+    color: $blue-dark;
+  }
+  .toolbar-background {
+    background-color: $blue-light;
+  }
+  ion-content {
+    background-color: $blue-background;
+  }
+  ion-list {
+    .item {
+      background-color: darken($blue-background, 1.5%);
+    }
+  }
+}

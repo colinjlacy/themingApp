@@ -1,0 +1,17 @@
+.red-theme {
+  h1, h2, h3, h4, h5, h6,
+  .toolbar-title {
+    color: $red-dark;
+  }
+  .toolbar-background {
+    background-color: $red-light;
+  }
+  ion-content {
+    background-color: $red-background;
+  }
+  ion-list {
+    .item {
+      background-color: darken($red-background, 1.5%);
+    }
+  }
+}
