@@ -1,26 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { SettingsService } from './settings.service';
 
-/*
- Generated class for the SettingsPage page.
-
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
     templateUrl: 'build/pages/settings/settings.html',
 })
 export class SettingsPage {
+    selected: String;
     availableThemes: {className: string, prettyName: string}[];
 
-    constructor(private _events: Events) {
-        this.availableThemes = [
-            {className: 'blue-theme', prettyName: 'Blue'},
-            {className: 'red-theme', prettyName: 'Red'}
-        ]
+    constructor(private _settings: SettingsService) {
+        this._settings.getTheme().subscribe(val => this.selected = val);
+        this.availableThemes = this._settings.availableThemes;
     }
 
     public setTheme(e) {
-        this._events.publish('themeChange', e);
+        this._settings.setTheme(e);
     }
 }

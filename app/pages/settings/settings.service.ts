@@ -2,23 +2,26 @@
  * Created by colinjlacy on 7/2/16.
  */
 import { Injectable } from '@angular/core';
-import { Events } from 'ionic-angular';
+import { BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class SettingsService {
-    private theme: string;
+    private theme: BehaviorSubject<String>;
+    availableThemes: {className: string, prettyName: string}[];
 
-    constructor(private _events: Events) {
-
-        this.theme = this.theme || 'blue-theme';
+    constructor() {
+        this.theme = new BehaviorSubject('blue-theme');
+        this.availableThemes = [
+            {className: 'blue-theme', prettyName: 'Blue'},
+            {className: 'red-theme', prettyName: 'Red'}
+        ];
     }
 
-    setTheme(e) {
-        this.theme = e;
-        this._events.publish('themeChange', e);
+    setTheme(val) {
+        this.theme.next(val);
     }
 
     getTheme() {
-        return this.theme;
+        return this.theme.asObservable();
     }
 }
